@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity
 
     private class AsyncCaller extends AsyncTask<Void, Void, Void>
     {
-        TextView view = (TextView) findViewById(R.id.hellow);
+        TextView view = (TextView) findViewById(R.id.text_heart_rate);
         String baseUrl = "http://idcr.rippleosi.org/api/patients/9999999000/labresults";
         HttpResponse response = null;
         @Override
