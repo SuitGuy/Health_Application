@@ -2,9 +2,11 @@ package com.software.team5.health_application;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
+import com.jayway.restassured.response.Response;
 
 import static com.jayway.restassured.RestAssured.*;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -19,13 +21,10 @@ public class RestInterface {
         RestAssured.baseURI = url;
         RestAssured.basePath = "NHS/API/";
     }
-    public static JSONObject SendGetRequest(JSONObject message){
-        response =
-                when().
-                        get("/rides").
-                        then().
-                        contentType(ContentType.JSON).  // check that the content type return from the API is JSON
-                        extract().response();
-    }
+    public static JSONObject SendGetRequest(JSONObject message) throws JSONException {
+        Response response;
+        response = get(baseURI + basePath);
 
+        return new JSONObject(response.asString());
+    }
 }
