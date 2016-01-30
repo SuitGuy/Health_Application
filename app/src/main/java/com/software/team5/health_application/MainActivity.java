@@ -25,8 +25,11 @@ import android.widget.Toast;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,8 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        AsyncCaller caller = new AsyncCaller();
-        caller.execute();
+        
 
         //Add listeners to all image button
         //Heart Rate
@@ -168,10 +170,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private class AsyncCaller extends AsyncTask<Void, Void, Void>
+    private class AsyncGetRequest extends AsyncTask<Void, Void, Void>
     {
         TextView view = (TextView) findViewById(R.id.text_heart_rate);
-        String baseUrl = "http://idcr.rippleosi.org/api/patients/9999999000/labresults";
+        String baseUrl = "http://192.168.0.3:8080/listMedical";
         HttpResponse response = null;
         @Override
         protected void onPreExecute() {
@@ -226,6 +228,80 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
             }
             view.setText(res);
+
         }
+    }
+    private class AsyncPostRequest extends AsyncTask<Void, Void, Void>
+    {
+
+        TextView view = (TextView) findViewById(R.id.text_heart_rate);
+        String baseUrl = "http://192.168.0.3:8080/getMedical";
+        HttpResponse response = null;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //this method will be running on UI thread
+
+        }
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            //this method will be running on background thread so don't update UI frome here
+            //do your long running http tasks here,you dont want to pass argument and u can access the parent class' variable url over here
+            // Create http client object to send request to server
+            HttpClient client = new DefaultHttpClient();
+            // Create URL string
+
+
+            //url with the post data
+            HttpPost httpost = new HttpPost();
+            // String jsonstr = getString("{ }");
+
+
+
+            try {
+                JSONObject holder = new JSONObject();
+                StringEntity se = new StringEntity("");
+                httpost.setEntity(se);
+                httpost.setHeader("Accept", "application/json");
+                httpost.setHeader("Content-type", "application/json");
+                httpost.setURI(new URI(baseUrl));
+                response = client.execute(httpost);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }catch (IOException e) {
+                e.printStackTrace();
+            } /*catch (JSONException e2) {
+                e2.printStackTrace();
+            }*/
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            String res = "";
+            try {
+                InputStream istream = response.getEntity().getContent();
+                if(istream != null){
+                    BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(istream));
+                    String line = "";
+                    while((line = bufferedReader.readLine()) != null)
+                        res += line;
+
+                    istream.close();
+                }else {
+                    view.setText("it Done brokeded");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            view.setText(res);
+
+        }
+
     }
 }
