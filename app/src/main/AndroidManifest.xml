@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.software.team5.health_application" >
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +19,36 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".HeartRateActivity"
+            android:label="@string/title_activity_heart_rate"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".BreathRateActivity"
+            android:label="@string/title_activity_breath_rate"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".SleepActivity"
+            android:label="@string/title_activity_sleep"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".BloodPressureActivity"
+            android:label="@string/title_activity_blood_pressure"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".BloodOxygenActivity"
+            android:label="@string/title_activity_blood_oxygen"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".BloodGlucoseActivity"
+            android:label="@string/title_activity_blood_glucose"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 
