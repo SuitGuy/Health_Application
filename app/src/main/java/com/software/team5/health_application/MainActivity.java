@@ -3,6 +3,7 @@
 
 package com.software.team5.health_application;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,6 +65,49 @@ public class MainActivity extends AppCompatActivity
         AsyncCaller caller = new AsyncCaller();
         caller.execute();
 
+        //Add listeners to all image button
+        //Heart Rate
+        ImageButton btn_heart_rate = (ImageButton) findViewById(R.id.btn_heart_rate);
+        btn_heart_rate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
+            }
+        });
+        //Breath Rate
+        ImageButton btn_breath_rate = (ImageButton) findViewById(R.id.btn_breath_rate);
+        btn_breath_rate.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
+            }
+        });
+        //Sleep
+        ImageButton btn_sleep = (ImageButton) findViewById(R.id.btn_sleep);
+        btn_sleep.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, SleepActivity.class));
+            }
+        });
+        //Blood Pressure
+        ImageButton btn_blood_pressure = (ImageButton) findViewById(R.id.btn_blood_pressure);
+        btn_blood_pressure.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
+            }
+        });
+        //Blood Oxygen
+        ImageButton btn_blood_oxygen = (ImageButton) findViewById(R.id.btn_oxygen);
+        btn_blood_oxygen.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
+            }
+        });
+        //Blood Glucose
+        ImageButton btn_blood_glucose = (ImageButton) findViewById(R.id.btn_glucose);
+        btn_blood_glucose.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
+            }
+        });
 
     }
 
