@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="JSON_String">{"sourceId":"819a69e8-6399-4250-9670-11cdb2a59b2c::ripple_osi.ehrscape.c4h::1","source":"openehr","testName":"Urea, electrolytes and creatinine measurement","sampleTaken":1424556662518,"dateCreated":1426975862518},{"sourceId":"e557afc8-b386-42a0-8d23-40c27bd35a5b::ripple_osi.ehrscape.c4h::1","source":"openehr","testName":"Urea, electrolytes and creatinine measurement","sampleTaken":1424643062518,"dateCreated":1427062262518}</string>
+</resources>
