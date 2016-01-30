@@ -25,4 +25,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:support-v4:23.0.1'
     compile 'com.android.support:design:23.0.1'
+    compile 'com.jayway.restassured:rest-assured:1.6'
 }
