@@ -10,125 +10,176 @@
     tools:context=".MainActivity"
     android:contextClickable="false">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_heart_rate"
-        android:layout_marginTop="58dp"
-        android:src="@mipmap/ic_heart_rate"
-        android:layout_marginStart="67dp"
-        android:contentDescription="@string/str_btn_heartrate"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_blood_pressure"
-        android:src="@mipmap/ic_blood_pressure"
-        android:layout_marginStart="44dp"
-        android:contentDescription="@string/str_btn_bloodpressure"
-        android:layout_above="@+id/text_heart_rate"
-        android:layout_toEndOf="@+id/text_heart_rate"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentEnd="false" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_glucose"
-        android:src="@mipmap/ic_blood_glucose"
-        android:contentDescription="@string/str_btn_glucose"
-        android:layout_below="@+id/btn_breath_rate"
-        android:layout_alignStart="@+id/btn_breath_rate"
-        android:layout_marginTop="53dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_oxygen"
-        android:src="@mipmap/ic_blood_oxygen"
-        android:contentDescription="@string/str_btn_oxygen"
-        android:layout_alignTop="@+id/btn_glucose"
-        android:layout_alignStart="@+id/btn_blood_pressure" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:id="@+id/btn_heart_rate"
+                    android:src="@mipmap/ic_heart_rate"
+                    android:contentDescription="@string/str_btn_heartrate"
+                    android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_heartrate"
-        android:id="@+id/text_heart_rate"
-        android:layout_below="@+id/btn_heart_rate"
-        android:layout_alignStart="@+id/btn_heart_rate" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_heartrate"
+                    android:id="@+id/text_heart_rate"
+             />
+            </LinearLayout>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_breath_rate"
-        android:src="@mipmap/ic_breath_rate"
-        android:contentDescription="@string/str_btn_breath_rate"
-        android:layout_alignTop="@+id/btn_sleep"
-        android:layout_alignStart="@+id/text_heart_rate" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_sleep"
-        android:src="@mipmap/ic_sleep"
-        android:contentDescription="@string/str_btn_sleep"
-        android:layout_marginTop="29dp"
-        android:layout_below="@+id/text_heart_rate"
-        android:layout_alignStart="@+id/btn_oxygen" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:background="#00000000"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_blood_pressure"
+                    android:src="@mipmap/ic_blood_pressure"
+                    android:contentDescription="@string/str_btn_bloodpressure" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_bloodpressure"
-        android:id="@+id/textView2"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_above="@+id/btn_sleep"
-        android:layout_alignStart="@+id/btn_blood_pressure"
-        android:layout_marginStart="25dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_bloodpressure"
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_breath_rate"
-        android:id="@+id/text_breathrate"
-        android:layout_below="@+id/btn_breath_rate"
-        android:layout_toStartOf="@+id/btn_blood_pressure" />
+        </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_sleep"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/btn_sleep"
-        android:layout_alignEnd="@+id/btn_sleep"
-        android:layout_marginEnd="12dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_glucose"
-        android:id="@+id/text_blood_glucose"
-        android:layout_marginEnd="33dp"
-        android:layout_below="@+id/btn_glucose"
-        android:layout_toStartOf="@+id/btn_oxygen" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/str_btn_oxygen"
-        android:id="@+id/textView4"
-        android:layout_marginStart="27dp"
-        android:layout_alignTop="@+id/text_blood_glucose"
-        android:layout_toEndOf="@+id/text_heart_rate" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_glucose"
+                    android:background="#00000000"
+                    android:src="@mipmap/ic_blood_glucose"
+                    android:contentDescription="@string/str_btn_glucose"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_glucose"
+                    android:id="@+id/text_blood_glucose"
+             />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_oxygen"
+                    android:src="@mipmap/ic_blood_oxygen"
+                    android:background="#00000000"
+                    android:contentDescription="@string/str_btn_oxygen"
+                    android:layout_marginLeft="50dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_oxygen"
+                    android:id="@+id/textView4"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_sleep"
+                    android:src="@mipmap/ic_sleep"
+                    android:contentDescription="@string/str_btn_sleep"
+
+                    android:background="#00000000" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_sleep"
+                    android:id="@+id/textView3"
+             />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_breath_rate"
+                    android:src="@mipmap/ic_breath_rate"
+                    android:background="#00000000"
+                    android:contentDescription="@string/str_btn_breath_rate"
+                    android:layout_gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_breath_rate"
+                    android:id="@+id/text_breathrate"
+            />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

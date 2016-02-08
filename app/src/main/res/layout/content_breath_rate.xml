@@ -10,4 +10,110 @@
     tools:showIn="@layout/activity_breath_rate"
     tools:context="com.software.team5.health_application.BreathRateActivity">
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:text="Breath Rate"
+                android:textColor="#0066CC"
+                android:textSize="30dp"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/imageView2"
+                android:editable="false"
+                android:focusable="false"
+                android:inputType="none"
+                android:singleLine="false"
+                android:layout_marginBottom="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:src="@mipmap/ic_breath_rate"
+                android:layout_alignTop="@+id/editText"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_below="@+id/editText"
+                android:layout_alignParentStart="true"
+                android:textColor="#0066CC"
+                android:text="Frequency: 5 mins"
+                android:editable="false"
+                android:focusable="false"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:textColor="#0066CC"
+                android:text="Last: 2.3 seconds"
+                android:editable="false"
+                android:focusable="false"
+                android:textSize="20dp"
+                android:layout_below="@+id/textView5"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3"
+                android:textColor="#0066CC"
+                android:text="Longest: 2.8 seconds"
+                android:layout_below="@+id/editText2"
+                android:layout_alignParentStart="true"
+                android:editable="false"
+                android:focusable="false"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText4"
+                android:textColor="#0066CC"
+                android:text="Shortest: 1.7 seconds"
+                android:layout_below="@+id/editText3"
+                android:layout_alignParentStart="true"
+                android:editable="false"
+                android:focusable="false"
+                android:layout_marginBottom="10dp"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/plot_Blood_oxygen"
+                android:src="@drawable/breath_rate"
+                android:layout_width="fill_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/textView6"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:textColor="#0066CC"
+                android:text="Avarage: 2.4 seconds"
+                android:editable="false"
+                android:focusable="false"
+                android:textSize="20dp"
+                android:layout_below="@+id/editText4"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+    </ScrollView>
+
 </RelativeLayout>

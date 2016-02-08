@@ -36,7 +36,7 @@ public class HeartRateActivity extends AppCompatActivity {
             }
         });
 
-        plot = (XYPlot) findViewById(R.id.plot);
+        plot = (XYPlot) findViewById(R.id.plot_HeartRate);
 
         // create a couple arrays of y-values to plot:
         Number[] series1Numbers = {82, 71, 86, 123, 76, 90, 91, 76, 112, 70};
@@ -47,6 +47,7 @@ public class HeartRateActivity extends AppCompatActivity {
         XYSeries series1 = new SimpleXYSeries(Arrays.asList(series1Numbers),
                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "BPM");
 
+
         XYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers),
                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Resting Heart Rate");
 
@@ -55,20 +56,20 @@ public class HeartRateActivity extends AppCompatActivity {
         LineAndPointFormatter series1Format = new LineAndPointFormatter();
         series1Format.setPointLabelFormatter(new PointLabelFormatter());
         series1Format.configure(getApplicationContext(),
-                R.xml.line_point_formatter);
+                R.xml.line_point_formatter_s2);
 
         LineAndPointFormatter series2Format = new LineAndPointFormatter();
         series2Format.setPointLabelFormatter(new PointLabelFormatter());
         series2Format.configure(getApplicationContext(),
-                R.xml.line_point_formatter);
+                R.xml.line_point_formatter_s1);
 
         // add an "dash" effect to the series2 line:
         series2Format.getLinePaint().setPathEffect(
                 new DashPathEffect(new float[] {
 
                         // always use DP when specifying pixel sizes, to keep things consistent across devices:
-                        PixelUtils.dpToPix(20),
-                        PixelUtils.dpToPix(15)}, 0));
+                        PixelUtils.dpToPix(5),
+                        PixelUtils.dpToPix(5)}, 0));
         // just for fun, add some smoothing to the lines:
         // see: http://androidplot.com/smooth-curves-and-androidplot/
         series1Format.setInterpolationParams(
