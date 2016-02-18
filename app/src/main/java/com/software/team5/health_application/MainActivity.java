@@ -20,8 +20,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,9 +46,33 @@ import java.net.URISyntaxException;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ListView mainListView;
+    MainListViewAdapter dataAdapter;
+    int[] health_icon_resource = {
+            R.mipmap.ic_blood_glucose,
+            R.mipmap.ic_blood_oxygen,
+            R.mipmap.ic_blood_pressure,
+            R.mipmap.ic_breath_rate,
+            R.mipmap.ic_heart_rate,
+            R.mipmap.ic_sleep};
+    String[] health_name;
+    String[] health_figure = {
+            "30",
+            "20",
+            "50",
+            "89",
+            "87",
+            "928"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +97,7 @@ public class MainActivity extends AppCompatActivity
 
         //Add listeners to all image button
         //Heart Rate
+        /*
         ImageButton btn_heart_rate = (ImageButton) findViewById(R.id.btn_heart_rate);
         btn_heart_rate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -86,22 +113,22 @@ public class MainActivity extends AppCompatActivity
         });
         //Sleep
         ImageButton btn_sleep = (ImageButton) findViewById(R.id.btn_sleep);
-        btn_sleep.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn_sleep.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SleepActivity.class));
             }
         });
         //Blood Pressure
         ImageButton btn_blood_pressure = (ImageButton) findViewById(R.id.btn_blood_pressure);
-        btn_blood_pressure.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn_blood_pressure.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
             }
         });
         //Blood Oxygen
         ImageButton btn_blood_oxygen = (ImageButton) findViewById(R.id.btn_oxygen);
-        btn_blood_oxygen.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        btn_blood_oxygen.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
             }
         });
@@ -111,8 +138,55 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v){
                 startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
             }
-        });
+        });*/
+        health_name = new String[6];
+        health_name[0] = getResources().getString(R.string.str_btn_glucose);
+        health_name[1] = getResources().getString(R.string.str_btn_oxygen);
+        health_name[2] = getResources().getString(R.string.str_btn_bloodpressure);
+        health_name[3] = getResources().getString(R.string.str_btn_breath_rate);
+        health_name[4] = getResources().getString(R.string.str_btn_heartrate);
+        health_name[5] = getResources().getString(R.string.str_btn_sleep);
 
+        mainListView = (ListView)findViewById(R.id.MainListView);
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
+                        break;
+                    case 1:
+                        startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(MainActivity.this, SleepActivity.class));
+                        break;
+
+                    default:
+                        Toast.makeText(MainActivity.this,"Activity incorrect!", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+
+            }
+        });
+        dataAdapter = new MainListViewAdapter(getApplicationContext(),R.layout.listview_row_layout);
+        mainListView.setAdapter(dataAdapter);
+        int i = 0;
+        for(String names: health_name){
+            MainListViewProvider dataProvider = new MainListViewProvider(health_icon_resource[i], health_name[i], health_figure[i]);
+            dataAdapter.add(dataProvider);
+            i++;
+        }
     }
 
     @Override
@@ -174,7 +248,7 @@ public class MainActivity extends AppCompatActivity
 
     private class AsyncGetRequest extends AsyncTask<Void, Void, Void>
     {
-        TextView view = (TextView) findViewById(R.id.text_heart_rate);
+        //TextView view = (TextView) findViewById(R.id.text_heart_rate);
         String baseUrl = "http://192.168.0.3:8080/listMedical";
         HttpResponse response = null;
         @Override
@@ -224,19 +298,19 @@ public class MainActivity extends AppCompatActivity
 
                     istream.close();
                 }else {
-                    view.setText("it Done brokeded");
+                    //view.setText("it Done brokeded");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            view.setText(res);
+            //view.setText(res);
 
         }
     }
     private class AsyncPostRequest extends AsyncTask<Void, Void, Void>
     {
 
-        TextView view = (TextView) findViewById(R.id.text_heart_rate);
+        //TextView view = (TextView) findViewById(R.id.text_heart_rate);
         String baseUrl = "http://192.168.0.3:8080/getMedical";
         HttpResponse response = null;
         @Override
@@ -295,13 +369,13 @@ public class MainActivity extends AppCompatActivity
 
                     istream.close();
                 }else {
-                    view.setText("it Done brokeded");
+                    //view.setText("it Done brokeded");
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            view.setText(res);
+            //view.setText(res);
 
         }
 

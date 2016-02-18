@@ -9,17 +9,20 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior" tools:showIn="@layout/app_bar_main"
     tools:context=".MainActivity"
     android:contextClickable="false">
-
+<!--
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="374dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -35,13 +38,6 @@
                     android:src="@mipmap/ic_heart_rate"
                     android:contentDescription="@string/str_btn_heartrate"
                     android:layout_gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/str_btn_heartrate"
-                    android:id="@+id/text_heart_rate"
              />
             </LinearLayout>
 
@@ -50,6 +46,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_heartrate"
+                    android:id="@+id/text_heart_rate"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp">
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -59,6 +75,14 @@
                     android:src="@mipmap/ic_blood_pressure"
                     android:contentDescription="@string/str_btn_bloodpressure" />
 
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -68,14 +92,14 @@
                     android:id="@+id/textView2"
                     android:layout_gravity="center_horizontal" />
             </LinearLayout>
-
         </LinearLayout>
+
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -92,13 +116,7 @@
                     android:contentDescription="@string/str_btn_glucose"
                     android:layout_gravity="center_horizontal" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/str_btn_glucose"
-                    android:id="@+id/text_blood_glucose"
-             />
+
             </LinearLayout>
 
             <LinearLayout
@@ -106,23 +124,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp">
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/btn_oxygen"
-                    android:src="@mipmap/ic_blood_oxygen"
-                    android:background="#00000000"
-                    android:contentDescription="@string/str_btn_oxygen"
-                    android:layout_marginLeft="50dp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/str_btn_oxygen"
-                    android:id="@+id/textView4"
-                    android:layout_gravity="center_horizontal" />
+                    android:text="@string/str_btn_glucose"
+                    android:id="@+id/text_blood_glucose"
+                    android:layout_marginLeft="20dp" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -130,7 +139,50 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_oxygen"
+                    android:src="@mipmap/ic_blood_oxygen"
+                    android:background="#00000000"
+                    android:contentDescription="@string/str_btn_oxygen" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_oxygen"
+                    android:id="@+id/textView4"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -147,13 +199,7 @@
 
                     android:background="#00000000" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/str_btn_sleep"
-                    android:id="@+id/textView3"
-             />
+
             </LinearLayout>
 
             <LinearLayout
@@ -161,6 +207,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="100dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/str_btn_sleep"
+                    android:id="@+id/textView3"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp">
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -171,15 +238,34 @@
                     android:contentDescription="@string/str_btn_breath_rate"
                     android:layout_gravity="center_horizontal" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/str_btn_breath_rate"
                     android:id="@+id/text_breathrate"
-            />
+                    />
+
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+
+
+
+    </LinearLayout>-->
+
+    <ListView
+        android:id="@+id/MainListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
