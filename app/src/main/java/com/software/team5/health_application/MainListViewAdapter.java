@@ -8,13 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 /**
+ * MainListViewAdapter
+ * The reload adapter for MainListView
+ *
  * Created by chenzitai on 18/02/16.
  */
 public class MainListViewAdapter extends ArrayAdapter{
@@ -34,6 +35,11 @@ public class MainListViewAdapter extends ArrayAdapter{
         list.add(object);
     }
     @Override
+    public void remove (Object object){
+        super.remove(object);
+        list.remove(object);
+    }
+    @Override
     public int getCount(){
         return this.list.size();
     }
@@ -41,7 +47,6 @@ public class MainListViewAdapter extends ArrayAdapter{
     public  Object getItem(int psition){
         return this.list.get(psition);
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row;

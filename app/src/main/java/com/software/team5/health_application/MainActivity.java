@@ -4,7 +4,9 @@
 package com.software.team5.health_application;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
@@ -23,7 +25,10 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,14 +53,8 @@ public class MainActivity extends AppCompatActivity
 
     ListView mainListView;
     MainListViewAdapter dataAdapter;
-    int[] health_icon_resource = {
-            R.mipmap.ic_blood_glucose,
-            R.mipmap.ic_blood_oxygen,
-            R.mipmap.ic_blood_pressure,
-            R.mipmap.ic_breath_rate,
-            R.mipmap.ic_heart_rate,
-            R.mipmap.ic_sleep};
-    String[] health_name;
+    int[] health_icon_resource = new int[6];
+    String[] health_name = new String[6];
     String[] health_figure = {
             "30",
             "20",
@@ -64,14 +63,11 @@ public class MainActivity extends AppCompatActivity
             "87",
             "928"
     };
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,94 +90,87 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Create listView
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
-        //Add listeners to all image button
-        //Heart Rate
-        /*
-        ImageButton btn_heart_rate = (ImageButton) findViewById(R.id.btn_heart_rate);
-        btn_heart_rate.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
-            }
-        });
-        //Breath Rate
-        ImageButton btn_breath_rate = (ImageButton) findViewById(R.id.btn_breath_rate);
-        btn_breath_rate.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
-            }
-        });
-        //Sleep
-        ImageButton btn_sleep = (ImageButton) findViewById(R.id.btn_sleep);
-        btn_sleep.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SleepActivity.class));
-            }
-        });
-        //Blood Pressure
-        ImageButton btn_blood_pressure = (ImageButton) findViewById(R.id.btn_blood_pressure);
-        btn_blood_pressure.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
-            }
-        });
-        //Blood Oxygen
-        ImageButton btn_blood_oxygen = (ImageButton) findViewById(R.id.btn_oxygen);
-        btn_blood_oxygen.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
-            }
-        });
-        //Blood Glucose
-        ImageButton btn_blood_glucose = (ImageButton) findViewById(R.id.btn_glucose);
-        btn_blood_glucose.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
-            }
-        });*/
-        health_name = new String[6];
-        health_name[0] = getResources().getString(R.string.str_btn_glucose);
-        health_name[1] = getResources().getString(R.string.str_btn_oxygen);
-        health_name[2] = getResources().getString(R.string.str_btn_bloodpressure);
-        health_name[3] = getResources().getString(R.string.str_btn_breath_rate);
-        health_name[4] = getResources().getString(R.string.str_btn_heartrate);
-        health_name[5] = getResources().getString(R.string.str_btn_sleep);
+        // Set default preference only once
+        if(!sharedPreferences.getBoolean("firstTime",false)){
+            Toast.makeText(getApplicationContext(), "No preference file!", Toast.LENGTH_LONG).show();
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("firstTime", true);
+            editor.putBoolean(getString(R.string.str_btn_glucose),true);
+            editor.putBoolean(getString(R.string.str_btn_oxygen),true);
+            editor.putBoolean(getString(R.string.str_btn_bloodpressure),true);
+            editor.putBoolean(getString(R.string.str_btn_sleep),true);
+            editor.commit();
+        }
+//        else {
+//            Toast.makeText(getApplicationContext(), "Have preference file!", Toast.LENGTH_LONG).show();
+//        }
 
-        mainListView = (ListView)findViewById(R.id.MainListView);
-        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        // Load preference
+            int i = 0;
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_glucose),false)){
+                health_icon_resource[i] = R.mipmap.ic_blood_glucose;
+                health_name[i] = getString(R.string.str_btn_glucose);
+                i++;
+            }
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_oxygen),false)){
+                health_icon_resource[i] = R.mipmap.ic_blood_oxygen;
+                health_name[i] = getString(R.string.str_btn_oxygen);
+                i++;
+            }
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_bloodpressure),false)){
+                health_icon_resource[i] = R.mipmap.ic_blood_pressure;
+                health_name[i] = getString(R.string.str_btn_bloodpressure);
+                i++;
+            }
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_breath_rate),false)){
+                health_icon_resource[i] = R.mipmap.ic_breath_rate;
+                health_name[i] = getString(R.string.str_btn_breath_rate);
+                i++;
+            }
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_heartrate),false)){
+                health_icon_resource[i] = R.mipmap.ic_heart_rate;
+                health_name[i] = getString(R.string.str_btn_heartrate);
+                i++;
+            }
+            if (sharedPreferences.getBoolean(getString(R.string.str_btn_sleep),false)){
+                health_icon_resource[i] = R.mipmap.ic_sleep;
+                health_name[i] = getString(R.string.str_btn_sleep);
+                i++;
+            }
+            //Create listView and set click listener
+            mainListView = (ListView)findViewById(R.id.MainListView);
+            mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
-                        break;
-                    case 1:
-                        startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
-                        break;
-                    case 2:
-                        startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
-                        break;
-                    case 4:
-                        startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
-                        break;
-                    case 5:
-                        startActivity(new Intent(MainActivity.this, SleepActivity.class));
-                        break;
+                // Getting the Container Layout of the ListView (in listview_row_layout.xml)
+                RelativeLayout relativeLayoutParent = (RelativeLayout) view;
+                // Getting the name TextView
+                TextView nameTextView = (TextView) relativeLayoutParent.getChildAt(1);
+                //Toast.makeText(getBaseContext(), nameTextView.getText().toString(), Toast.LENGTH_SHORT).show();
 
-                    default:
-                        Toast.makeText(MainActivity.this,"Activity incorrect!", Toast.LENGTH_SHORT).show();
-                        break;
-
-                }
-
+                String textViewString = nameTextView.getText().toString();
+                if(textViewString == getString(R.string.str_btn_glucose))
+                    startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
+                else if (textViewString == getString(R.string.str_btn_oxygen))
+                    startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
+                else if (textViewString == getString(R.string.str_btn_bloodpressure))
+                    startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
+                else if (textViewString == getString(R.string.str_btn_breath_rate))
+                    startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
+                else if (textViewString == getString(R.string.str_btn_heartrate))
+                    startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
+                else if (textViewString == getString(R.string.str_btn_sleep))
+                    startActivity(new Intent(MainActivity.this, SleepActivity.class));
+                else
+                    Toast.makeText(MainActivity.this,"Activity incorrect!", Toast.LENGTH_SHORT).show();
             }
         });
         dataAdapter = new MainListViewAdapter(getApplicationContext(),R.layout.listview_row_layout);
         mainListView.setAdapter(dataAdapter);
-        int i = 0;
+        i = 0;
         for(String names: health_name){
             MainListViewProvider dataProvider = new MainListViewProvider(health_icon_resource[i], health_name[i], health_figure[i]);
             dataAdapter.add(dataProvider);
