@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
 /**
  * MainListViewAdapter
  * The reload adapter for MainListView

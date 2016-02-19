@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
             editor.putBoolean(getString(R.string.str_btn_oxygen),true);
             editor.putBoolean(getString(R.string.str_btn_bloodpressure),true);
             editor.putBoolean(getString(R.string.str_btn_sleep),true);
-            editor.commit();
+            editor.apply();
         }
 //        else {
 //            Toast.makeText(getApplicationContext(), "Have preference file!", Toast.LENGTH_LONG).show();
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
             if (sharedPreferences.getBoolean(getString(R.string.str_btn_sleep),false)){
                 health_icon_resource[i] = R.mipmap.ic_sleep;
                 health_name[i] = getString(R.string.str_btn_sleep);
-                i++;
+                //i++;
             }
             //Create listView and set click listener
             mainListView = (ListView)findViewById(R.id.MainListView);
@@ -152,17 +152,17 @@ public class MainActivity extends AppCompatActivity
                 //Toast.makeText(getBaseContext(), nameTextView.getText().toString(), Toast.LENGTH_SHORT).show();
 
                 String textViewString = nameTextView.getText().toString();
-                if(textViewString == getString(R.string.str_btn_glucose))
+                if(textViewString.equals(getString(R.string.str_btn_glucose)))
                     startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
-                else if (textViewString == getString(R.string.str_btn_oxygen))
+                else if (textViewString.equals(getString(R.string.str_btn_oxygen)))
                     startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
-                else if (textViewString == getString(R.string.str_btn_bloodpressure))
+                else if (textViewString.equals(getString(R.string.str_btn_bloodpressure)))
                     startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
-                else if (textViewString == getString(R.string.str_btn_breath_rate))
+                else if (textViewString.equals(getString(R.string.str_btn_breath_rate)))
                     startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
-                else if (textViewString == getString(R.string.str_btn_heartrate))
+                else if (textViewString.equals(getString(R.string.str_btn_heartrate)))
                     startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
-                else if (textViewString == getString(R.string.str_btn_sleep))
+                else if (textViewString.equals(getString(R.string.str_btn_sleep)))
                     startActivity(new Intent(MainActivity.this, SleepActivity.class));
                 else
                     Toast.makeText(MainActivity.this,"Activity incorrect!", Toast.LENGTH_SHORT).show();
