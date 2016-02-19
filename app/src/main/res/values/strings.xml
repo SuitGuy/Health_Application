@@ -12,9 +12,9 @@
     <string name="str_btn_breath_rate">Breath Rate</string>
     <string name="str_btn_sleep">Sleep</string>
     <string name="title_activity_heart_rate">Heart Rate</string>
-    <string name="title_activity_breath_rate">BreathRateActivity</string>
-    <string name="title_activity_sleep">SleepActivity</string>
-    <string name="title_activity_blood_pressure">BloodPressureActivity</string>
-    <string name="title_activity_blood_oxygen">BloodOxygenActivity</string>
-    <string name="title_activity_blood_glucose">BloodGlucoseActivity</string>
+    <string name="title_activity_breath_rate">Breath Rate</string>
+    <string name="title_activity_sleep">Sleep</string>
+    <string name="title_activity_blood_pressure">Blood Pressure</string>
+    <string name="title_activity_blood_oxygen">Blood Oxygen</string>
+    <string name="title_activity_blood_glucose">Blood Glucose</string>
 </resources>

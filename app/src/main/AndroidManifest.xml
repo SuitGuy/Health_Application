@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.software.team5.health_application" >
+    package="com.software.team5.health_application">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,12 +9,12 @@
         android:icon="@mipmap/ic_heart_rate"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,33 +24,28 @@
         <activity
             android:name=".HeartRateActivity"
             android:label="@string/title_activity_heart_rate"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".BreathRateActivity"
             android:label="@string/title_activity_breath_rate"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SleepActivity"
             android:label="@string/title_activity_sleep"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".BloodPressureActivity"
             android:label="@string/title_activity_blood_pressure"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".BloodOxygenActivity"
             android:label="@string/title_activity_blood_oxygen"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".BloodGlucoseActivity"
             android:label="@string/title_activity_blood_glucose"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MessageActivity"></activity>
     </application>
 
 </manifest>
