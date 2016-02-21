@@ -1,11 +1,14 @@
 package com.software.team5.health_application;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class BloodGlucoseActivity extends AppCompatActivity {
 
@@ -22,6 +25,14 @@ public class BloodGlucoseActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "This is used for sending message to health care professionals.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        Button normal = (Button) findViewById(R.id.normalBloodGlucose);
+        normal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Blood_sugar")));
             }
         });
     }

@@ -1,12 +1,15 @@
 package com.software.team5.health_application;
 
+import android.content.Intent;
 import android.graphics.DashPathEffect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.androidplot.util.PixelUtils;
 import com.androidplot.xy.CatmullRomInterpolator;
@@ -88,6 +91,14 @@ public class BloodPressureActivity extends AppCompatActivity {
 
         // rotate domain labels 45 degrees to make them more compact horizontally:
         plot.getGraphWidget().setDomainLabelOrientation(-45);
+
+        Button normal = (Button) findViewById(R.id.normalBloodPressure);
+        normal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://en.wikipedia.org/wiki/Blood_pressure")));
+            }
+        });
     }
 
 }

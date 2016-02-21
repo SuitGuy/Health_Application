@@ -100,6 +100,13 @@
                 android:layout_height="300dp"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/editText4" />
+            <Button
+                android:id="@+id/normalSleep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plot_Blood_oxygen"
+                android:layout_alignParentStart="true"
+                android:text="What is normal value?"/>
         </RelativeLayout>
     </ScrollView>
 

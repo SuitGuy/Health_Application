@@ -55,19 +55,19 @@ public class MainActivity extends AppCompatActivity
         // Load preference
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_glucose),false)){
             dataAdapter.add(new MainListViewProvider(
-                            R.mipmap.ic_blood_glucose,getString(R.string.str_btn_glucose),"1"));
+                            R.mipmap.ic_blood_glucose,getString(R.string.str_btn_glucose),"4.9/154"));
         }
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_oxygen),false)){
             dataAdapter.add(new MainListViewProvider(
-                    R.mipmap.ic_blood_oxygen,getString(R.string.str_btn_oxygen),"2"));
+                    R.mipmap.ic_blood_oxygen,getString(R.string.str_btn_oxygen),"93.4%"));
         }
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_bloodpressure),false)){
             dataAdapter.add(new MainListViewProvider(
-                    R.mipmap.ic_blood_pressure,getString(R.string.str_btn_bloodpressure),"3"));
+                    R.mipmap.ic_blood_pressure,getString(R.string.str_btn_bloodpressure),"130/80"));
         }
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_breath_rate),false)){
             dataAdapter.add(new MainListViewProvider(
-                    R.mipmap.ic_breath_rate,getString(R.string.str_btn_breath_rate),"78"));
+                    R.mipmap.ic_breath_rate,getString(R.string.str_btn_breath_rate),"2.3"));
         }
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_heartrate),false)){
             dataAdapter.add(new MainListViewProvider(
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (sharedPreferences.getBoolean(getString(R.string.str_btn_sleep),false)){
             dataAdapter.add(new MainListViewProvider(
-                    R.mipmap.ic_sleep,getString(R.string.str_btn_sleep),"100"));
+                    R.mipmap.ic_sleep,getString(R.string.str_btn_sleep),"79"));
         }
         dataAdapter.add(new MainListViewProvider(
                 R.mipmap.ic_plus,getString(R.string.str_btn_add),""));

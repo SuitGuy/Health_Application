@@ -146,6 +146,13 @@
                 ap:legendAnchorPosition="right_bottom"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/editText5" />
+            <Button
+                android:id="@+id/normalBloodPressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/plot_Blood_oxygen"
+                android:layout_alignParentStart="true"
+                android:text="What is normal value?"/>
         </RelativeLayout>
     </ScrollView>
 

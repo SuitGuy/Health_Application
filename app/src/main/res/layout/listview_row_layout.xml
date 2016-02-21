@@ -10,7 +10,7 @@
         android:src="@mipmap/ic_blood_glucose"/>
     <TextView
         android:id="@+id/health_name"
-        android:layout_width="175dp"
+        android:layout_width="160dp"
         android:layout_height="75dp"
         android:layout_toRightOf="@+id/health_icon"
         android:textColor="#000000"
