@@ -24,28 +24,31 @@
         <activity
             android:name=".HeartRateActivity"
             android:label="@string/title_activity_heart_rate"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BreathRateActivity"
             android:label="@string/title_activity_breath_rate"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SleepActivity"
             android:label="@string/title_activity_sleep"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BloodPressureActivity"
             android:label="@string/title_activity_blood_pressure"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BloodOxygenActivity"
             android:label="@string/title_activity_blood_oxygen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".BloodGlucoseActivity"
             android:label="@string/title_activity_blood_glucose"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MessageActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MessageActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

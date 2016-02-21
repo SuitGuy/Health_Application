@@ -27,6 +27,7 @@ public class MainListViewAdapter extends ArrayAdapter{
     public MainListViewAdapter(Context context, int resource) {
         super(context, resource);
     }
+
     @Override
     public void add (Object object){
         super.add(object);
@@ -36,6 +37,11 @@ public class MainListViewAdapter extends ArrayAdapter{
     public void remove (Object object){
         super.remove(object);
         list.remove(object);
+    }
+    @Override
+    public void clear(){
+        super.clear();
+        list.clear();
     }
     @Override
     public int getCount(){

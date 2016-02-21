@@ -3,12 +3,10 @@
 
 package com.software.team5.health_application;
 
-import android.app.ActionBar;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,10 +21,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,7 +32,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -53,18 +46,38 @@ public class MainActivity extends AppCompatActivity
 
     ListView mainListView;
     MainListViewAdapter dataAdapter;
-    int[] health_icon_resource = new int[6];
-    String[] health_name = new String[6];
-    String[] health_figure = {
-            "30",
-            "20",
-            "50",
-            "89",
-            "87",
-            "928"
-    };
     SharedPreferences sharedPreferences;
 
+    //Load list items from preference
+    public void loadListItems(MainListViewAdapter dataAdapter, SharedPreferences sharedPreferences){
+        // Load preference
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_glucose),false)){
+            dataAdapter.add(new MainListViewProvider(
+                            R.mipmap.ic_blood_glucose,getString(R.string.str_btn_glucose),"1"));
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_oxygen),false)){
+            dataAdapter.add(new MainListViewProvider(
+                    R.mipmap.ic_blood_oxygen,getString(R.string.str_btn_oxygen),"2"));
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_bloodpressure),false)){
+            dataAdapter.add(new MainListViewProvider(
+                    R.mipmap.ic_blood_pressure,getString(R.string.str_btn_bloodpressure),"3"));
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_breath_rate),false)){
+            dataAdapter.add(new MainListViewProvider(
+                    R.mipmap.ic_breath_rate,getString(R.string.str_btn_breath_rate),"78"));
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_heartrate),false)){
+            dataAdapter.add(new MainListViewProvider(
+                    R.mipmap.ic_heart_rate,getString(R.string.str_btn_heartrate),"98"));
+        }
+        if (sharedPreferences.getBoolean(getString(R.string.str_btn_sleep),false)){
+            dataAdapter.add(new MainListViewProvider(
+                    R.mipmap.ic_sleep,getString(R.string.str_btn_sleep),"100"));
+        }
+        dataAdapter.add(new MainListViewProvider(
+                R.mipmap.ic_plus,getString(R.string.str_btn_add),""));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +103,37 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        // Create listView
+        //Create listView and set click listener
+        mainListView = (ListView)findViewById(R.id.MainListView);
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Getting the Container Layout of the ListView (in listview_row_layout.xml)
+                RelativeLayout relativeLayoutParent = (RelativeLayout) view;
+                // Getting the TextView name
+                TextView nameTextView = (TextView) relativeLayoutParent.getChildAt(1);
+                //Toast.makeText(getBaseContext(), nameTextView.getText().toString(), Toast.LENGTH_SHORT).show();
+
+                String textViewString = nameTextView.getText().toString();
+                if (textViewString.equals(getString(R.string.str_btn_glucose)))
+                    startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
+                else if (textViewString.equals(getString(R.string.str_btn_oxygen)))
+                    startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
+                else if (textViewString.equals(getString(R.string.str_btn_bloodpressure)))
+                    startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
+                else if (textViewString.equals(getString(R.string.str_btn_breath_rate)))
+                    startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
+                else if (textViewString.equals(getString(R.string.str_btn_heartrate)))
+                    startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
+                else if (textViewString.equals(getString(R.string.str_btn_sleep)))
+                    startActivity(new Intent(MainActivity.this, SleepActivity.class));
+                else if(textViewString.equals(getString(R.string.str_btn_add)))
+                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                else
+                    Toast.makeText(MainActivity.this, "Activity incorrect!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         // Set default preference only once
@@ -108,74 +151,11 @@ public class MainActivity extends AppCompatActivity
 //            Toast.makeText(getApplicationContext(), "Have preference file!", Toast.LENGTH_LONG).show();
 //        }
 
-        // Load preference
-            int i = 0;
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_glucose),false)){
-                health_icon_resource[i] = R.mipmap.ic_blood_glucose;
-                health_name[i] = getString(R.string.str_btn_glucose);
-                i++;
-            }
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_oxygen),false)){
-                health_icon_resource[i] = R.mipmap.ic_blood_oxygen;
-                health_name[i] = getString(R.string.str_btn_oxygen);
-                i++;
-            }
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_bloodpressure),false)){
-                health_icon_resource[i] = R.mipmap.ic_blood_pressure;
-                health_name[i] = getString(R.string.str_btn_bloodpressure);
-                i++;
-            }
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_breath_rate),false)){
-                health_icon_resource[i] = R.mipmap.ic_breath_rate;
-                health_name[i] = getString(R.string.str_btn_breath_rate);
-                i++;
-            }
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_heartrate),false)){
-                health_icon_resource[i] = R.mipmap.ic_heart_rate;
-                health_name[i] = getString(R.string.str_btn_heartrate);
-                i++;
-            }
-            if (sharedPreferences.getBoolean(getString(R.string.str_btn_sleep),false)){
-                health_icon_resource[i] = R.mipmap.ic_sleep;
-                health_name[i] = getString(R.string.str_btn_sleep);
-                //i++;
-            }
-            //Create listView and set click listener
-            mainListView = (ListView)findViewById(R.id.MainListView);
-            mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Getting the Container Layout of the ListView (in listview_row_layout.xml)
-                RelativeLayout relativeLayoutParent = (RelativeLayout) view;
-                // Getting the name TextView
-                TextView nameTextView = (TextView) relativeLayoutParent.getChildAt(1);
-                //Toast.makeText(getBaseContext(), nameTextView.getText().toString(), Toast.LENGTH_SHORT).show();
-
-                String textViewString = nameTextView.getText().toString();
-                if(textViewString.equals(getString(R.string.str_btn_glucose)))
-                    startActivity(new Intent(MainActivity.this, BloodGlucoseActivity.class));
-                else if (textViewString.equals(getString(R.string.str_btn_oxygen)))
-                    startActivity(new Intent(MainActivity.this, BloodOxygenActivity.class));
-                else if (textViewString.equals(getString(R.string.str_btn_bloodpressure)))
-                    startActivity(new Intent(MainActivity.this, BloodPressureActivity.class));
-                else if (textViewString.equals(getString(R.string.str_btn_breath_rate)))
-                    startActivity(new Intent(MainActivity.this, BreathRateActivity.class));
-                else if (textViewString.equals(getString(R.string.str_btn_heartrate)))
-                    startActivity(new Intent(MainActivity.this, HeartRateActivity.class));
-                else if (textViewString.equals(getString(R.string.str_btn_sleep)))
-                    startActivity(new Intent(MainActivity.this, SleepActivity.class));
-                else
-                    Toast.makeText(MainActivity.this,"Activity incorrect!", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //Create data adapter and assign it to listView
         dataAdapter = new MainListViewAdapter(getApplicationContext(),R.layout.listview_row_layout);
         mainListView.setAdapter(dataAdapter);
-        i = 0;
-        for(String names: health_name){
-            MainListViewProvider dataProvider = new MainListViewProvider(health_icon_resource[i], health_name[i], health_figure[i]);
-            dataAdapter.add(dataProvider);
-            i++;
-        }
+        //Load Items
+        loadListItems(dataAdapter,sharedPreferences);
     }
 
     @Override
