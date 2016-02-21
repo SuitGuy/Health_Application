@@ -6,7 +6,7 @@
 
     <string name="action_settings">Settings</string>
     <string name="str_btn_heartrate">Heart Rate</string>
-    <string name="str_btn_bloodpressure">BP</string>
+    <string name="str_btn_bloodpressure">Blood Pressure</string>
     <string name="str_btn_glucose">Blood Glucose</string>
     <string name="str_btn_oxygen">Blood Oxygen</string>
     <string name="str_btn_breath_rate">Breath Rate</string>

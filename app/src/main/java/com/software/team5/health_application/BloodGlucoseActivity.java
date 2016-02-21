@@ -20,7 +20,7 @@ public class BloodGlucoseActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "This is used for sending message to health care professionals.", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
